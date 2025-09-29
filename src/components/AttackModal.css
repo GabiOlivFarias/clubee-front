@@ -1,0 +1,145 @@
+.modal-overlay {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0,0,0,0.7); 
+    z-index: 1000;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    padding: 10px; /* garante espaço em telas pequenas */
+    box-sizing: border-box;
+}
+
+.attack-modal {
+    background-color: #fff; 
+    color: #333; 
+    padding: 30px;
+    border-radius: 20px; 
+    width: 100%; /* usa toda largura disponível */
+    max-width: 600px; 
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.battle-arena { 
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    flex-wrap: wrap; /* permite quebrar linha em telas pequenas */
+    margin: 20px 0; 
+    gap: 15px; /* espaço entre combatentes */
+}
+
+.combatant { 
+    padding: 20px; 
+    border-radius: 10px;
+    width: 45%; /* ocupa metade da linha em telas médias */
+    min-width: 150px; /* evita ficar muito estreito */
+    box-sizing: border-box;
+}
+
+.combatant h3 { 
+    margin-top: 0; 
+    font-size: 1.2rem;
+}
+
+.attacker { 
+    background-color: #e7f3ff;
+    border: 2px solid var(--azul-suave, #3A86FF);
+}
+
+.defender { 
+    background-color: #ffebee; 
+    border: 2px solid #e74c3c;
+}
+
+.vs-icon { 
+    font-size: 3rem; 
+    margin: 10px;
+}
+
+.launch-attack-btn {
+    background-color: #e74c3c; 
+    color: white; 
+    padding: 12px 25px;
+    border: none; 
+    border-radius: 10px; 
+    font-size: 1rem; 
+    font-weight: bold; 
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.launch-attack-btn:hover {
+    transform: scale(1.05);
+}
+
+.spinner {
+    width: 50px; 
+    height: 50px; 
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--azul-suave, #3A86FF);
+    border-radius: 50%; 
+    margin: 20px auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 
+    0% { transform: rotate(0deg); } 
+    100% { transform: rotate(360deg); } 
+}
+
+.result-screen h2 { 
+    font-size: 2rem; 
+    margin: 0; 
+}
+
+.result-screen .result-icon { 
+    font-size: 3rem; 
+    margin: 10px 0; 
+}
+
+.close-result-btn {
+    background-color: #555; 
+    color: white; 
+    padding: 10px 20px; 
+    border-radius: 8px;
+    border: none; 
+    cursor: pointer; 
+    margin-top: 20px; 
+    font-weight: bold;
+}
+
+/* Media Queries para telas menores */
+@media (max-width: 500px) {
+    .combatant {
+        width: 100%; /* ocupa toda largura da linha */
+        padding: 15px;
+    }
+
+    .vs-icon {
+        font-size: 2rem;
+        margin: 5px 0;
+    }
+
+    .launch-attack-btn {
+        width: 100%; /* botão cheio na linha */
+        padding: 12px 0;
+        font-size: 1rem;
+    }
+
+    .attack-modal {
+        padding: 20px;
+    }
+
+    .result-screen h2 {
+        font-size: 1.5rem;
+    }
+
+    .result-screen .result-icon {
+        font-size: 2.5rem;
+    }
+}

@@ -1,0 +1,153 @@
+.colmeias-container {
+    max-width: 1200px;      
+    width: calc(100% - 40px); 
+    margin: 40px auto;     
+    padding: 25px 20px;    
+    box-sizing: border-box; 
+    background-image: linear-gradient(to right, rgba(250,178,23,0.8), rgba(29,146,255,0.8)), url('../assets/images/favos.jpg');
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    color: var(--preto-suave, #222);
+}
+
+.colmeias-header {
+    text-align: center;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    position: relative;
+}
+.colmeias-header h1 {
+    font-family: 'Baloo 2', cursive;
+    color: var(--preto-suave, #222);
+    font-size: 2.8rem;
+    margin: 0;
+}
+.colmeias-header p {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-top: 5px;
+}
+.back-button {
+    position: absolute; 
+    top: 1px; 
+    left: 10px; 
+    text-decoration: none;
+    font-weight: 600; 
+    color:#feffff;
+    background-color: #3A86FF;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px black;
+}
+
+.colmeias-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px 5px;
+    padding: 20px 0;
+}
+
+.colmeia-card {
+    width: 240px;
+    height: 270px;
+    background-color: var(--cinza-neutro, #F4F4F4);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-sizing: border-box; 
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.colmeia-card:hover {
+    transform: scale(1.05);
+    background-color: #e2ce7f;
+}
+
+.colmeia-card h4 {
+    font-family: 'Baloo 2', cursive;
+    margin: 0 0 10px 0;
+    font-size: 1.3rem;
+}
+.colmeia-card p {
+    color: #777;
+    margin: 0 0 15px 0;
+    font-weight: 600;
+}
+.colmeia-card .recursos {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--laranja-doce, #FF9A3C);
+}
+
+.colmeia-card button {
+    background-color: var(--azul-suave, #3A86FF);
+    color: white;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.2s ease;
+}
+.colmeia-card button:hover {
+    transform: scale(1.1);
+}
+.colmeia-card button.attack-btn {
+    background-color: #e74c3c;
+}
+.colmeia-card button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.create-card {
+    background-color: var(--amarelo-mel, #FFC93C);
+    cursor: pointer;
+    color: var(--preto-suave, #222);
+}
+.create-card .plus-icon {
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 1;
+}
+.create-card h4 {
+    font-size: 1.4rem;
+}
+
+.colmeia-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+@media (max-width: 768px) {
+    .colmeias-container {
+        width: calc(100% - 20px); 
+        padding: 5px 10px;
+        margin: 60px auto;
+    }
+
+    .colmeias-content {
+        grid-template-columns: 1fr; 
+    }
+
+    .colmeias-list {
+        gap: 10px;
+    }
+
+    .colmeia-card {
+        width: 180px;
+        height: 210px;
+        padding: 10px;
+    }
+
+    .colmeia-card h4 { 
+        font-size: 1rem; 
+    }
+}
