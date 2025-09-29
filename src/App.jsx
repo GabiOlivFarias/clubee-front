@@ -8,6 +8,12 @@ import AttackModal from "./components/AttackModal";
 import "./App.css";
 
 function App() {
+  // NOVO: Linha mágica que escolhe a URL do backend automaticamente.
+  // Em modo de desenvolvimento, usa 'localhost'. No deploy, usa a URL da Vercel.
+  const backendUrl = import.meta.env.DEV
+    ? "http://localhost:3001"
+    : import.meta.env.VITE_BACKEND_URL;
+
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -54,8 +60,8 @@ function App() {
   useEffect(() => {
     const checkLoginStatus = async () => {
       try {
-        // CORREÇÃO: Usando a URL completa do backend para checar o status de login
-        const response = await fetch("http://localhost:3001/api/user/me", {
+        // ALTERADO: Usando a variável backendUrl
+        const response = await fetch(`${backendUrl}/api/user/me`, {
           credentials: "include",
         });
         const data = await response.json();
@@ -69,12 +75,12 @@ function App() {
       }
     };
     checkLoginStatus();
-  }, []);
+  }, [backendUrl]); // Adicionado backendUrl como dependência
 
   const handleLogout = () => {
     setUser(null);
-    // CORREÇÃO: Usando a URL completa do backend para o logout
-    window.location.href = "http://localhost:3001/auth/logout";
+    // ALTERADO: Usando a variável backendUrl
+    window.location.href = `${backendUrl}/auth/logout`;
   };
 
   const handleCreateCommunity = (name) => {
@@ -218,7 +224,6 @@ function App() {
         />
       </Routes>
 
-      {/* O Modal de Ataque só é renderizado se o estado isAttackModalOpen for verdadeiro */}
       {isAttackModalOpen && (
         <AttackModal
           attacker={attackData.attacker}

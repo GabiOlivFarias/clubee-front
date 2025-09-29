@@ -3,8 +3,12 @@ import "./Login.css";
 
 function Login() {
   const handleGoogleLogin = () => {
-    // CORREÇÃO: Redireciona para a rota de login do backend (3001)
-    window.location.href = "http://localhost:3001/auth/google";
+    //Usa a variável de ambiente VITE_BACKEND_URL.
+    // Em produção (Vercel) será a URL do seu backend (ex: https://clubee-back.vercel.app)
+    // Em desenvolvimento (local) será http://localhost:3001
+    const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
+    
+    window.location.href = `${backendUrl}/auth/google`;
   };
 
   return (
