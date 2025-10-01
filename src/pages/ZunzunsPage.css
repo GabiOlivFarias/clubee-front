@@ -1,0 +1,24 @@
+.zunzuns-page-container {
+    max-width: 650px; /* Largura para o feed */
+    margin: 0 auto; /* Centraliza na tela */
+    padding: 20px;
+    background-color: #1c1c1c; /* Fundo ligeiramente diferente para o feed */
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+.zunzuns-page-container h1 {
+    color: #ffcc00;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333;
+}
+
+/* --- Estilo de Parágrafo (temporário) --- */
+.zunzuns-page-container p {
+    text-align: center;
+    padding: 20px;
+    border: 1px dashed #555;
+    border-radius: 8px;
+}

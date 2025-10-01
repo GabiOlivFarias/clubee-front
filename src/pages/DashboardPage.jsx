@@ -1,34 +1,74 @@
-import React from 'react';
-import './DashboardPage.css';
-import { Link } from 'react-router-dom'; 
-import BuildingScene from '../components/BuildingScene';
+import React, { useState, useEffect } from "react";
+import queenPhoto from "../assets/images/roblox.jpg";
+import "./DashboardPage.css";
+import { Link } from "react-router-dom";
+import BuildingScene from "../components/BuildingScene";
 //import HoneycombIcon from "../assets/icons/honeycombIcon";
 import ClassesIcon from "../assets/icons/ClassesIcon";
 import BeeIcon from "../assets/icons/BeeIcon";
 import QueenIcon from "../assets/icons/QueenIcon";
 
-function DashboardPage({ user, onLogout }) {
+function DashboardPage({ user, onLogout, backendUrl }) {
+  // Receba backendUrl
+  const [users, setUsers] = useState([]);
+  const [loadingUsers, setLoadingUsers] = useState(true);
+
   const queenBee = {
-    name: user.displayName, 
-    photo: user.photos[0].value,
-    class: "6ºC",
-    achievement: "Maior pontuador em 'Zunzuns' esta semana!"
+    photo: queenPhoto,
+    name: "Mauro Oliveira",
+    class: "7ºB",
+    achievement: "Derrotou mais colméias nos ultimos 15 dias",
   };
 
+  // Efeito para buscar a lista de usuários
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        // Chama a nova rota de usuários
+        const response = await fetch(`${backendUrl}/api/users`, {
+          credentials: "include",
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setUsers(data.users);
+        } else {
+          console.error("Falha ao buscar usuários:", response.status);
+          setUsers([{ displayName: "Erro ao carregar lista" }]);
+        }
+      } catch (error) {
+        console.error("Erro de rede ao buscar usuários:", error);
+        setUsers([{ displayName: "Erro de Conexão" }]);
+      } finally {
+        setLoadingUsers(false);
+      }
+    };
+
+    fetchUsers();
+  }, [backendUrl]);
+
   return (
-    <div className="dashboard-container">   
+    <div className="dashboard-container">
       <header className="dashboard-header">
         <h2 className="dashboard-title">Painel Principal</h2>
         <div className="action-buttons-header">
-          <button className="action-btn">
+          <Link
+            to="/zunzuns"
+            className="action-btn"
+            style={{ textDecoration: "none" }}
+          >
             <BeeIcon className="btn-icon" />
             <span className="btn-text">Zunzum</span>
-          </button>
-          <Link to="/colmeias" className="action-btn" style={{textDecoration: 'none'}}>
+          </Link>
+          <Link
+            to="/colmeias"
+            className="action-btn"
+            style={{ textDecoration: "none" }}
+          >
             🍯
             <span className="btn-text">Colmeias</span>
           </Link>
-          
+
           <button className="action-btn">
             <ClassesIcon className="btn-icon" />
             <span className="btn-text">Aulas</span>
@@ -38,30 +78,58 @@ function DashboardPage({ user, onLogout }) {
             <span className="btn-text">Abelha Rainha</span>
           </button>
         </div>
-        <button onClick={onLogout} className="logout-button">Sair</button>
+        <button onClick={onLogout} className="logout-button">
+          Sair
+        </button>
       </header>
+          <main className="dashboard-main-content">
+          <div className="main-content-row">
 
-      <main className="dashboard-main-content">
-        <div className="main-hub">
+            <div className="main-hub">
           <div className="hub-title">Centro Criativo</div>
-          <BuildingScene />
-        </div>
-
+              <BuildingScene />{" "}
+            </div>
+            <div className="users-list-section">
+              <h3 style={{ marginBottom: "10px" }}>👥 Membros Online</h3>
+              {loadingUsers ? (
+                <p>Carregando membros...</p>
+              ) : (
+                <ul style={{ listStyleType: "none", padding: 0 }}> 
+              {users.filter((u) => u.id !== user.id).map((u) => (
+                <li
+                  key={u.id}
+                  style={{
+                  padding: "5px",
+                  borderBottom: "1px solid #333",
+                  color: "inherit", // Remove a lógica de cor, pois agora são todos "outros"
+                  }}
+                  >
+                  👤 {u.displayName}
+                </li>
+              ))}
+                </ul>
+              )}
+            </div>
+          </div>
         <div className="queen-bee-card">
-            <div className="queen-bee-header">
-                <h3>👑 Abelha Rainha da Semana</h3>
-            </div>
-            <div className="queen-bee-profile">
-                <img src={queenBee.photo} alt={`Foto de ${queenBee.name}`} className="profile-pic" />
-                <h4>{queenBee.name}</h4>
-                <p className="class-info">Turma {queenBee.class}</p>
-            </div>
-            <div className="queen-bee-achievement">
-                <p>"{queenBee.achievement}"</p>
-            </div>
+          <div className="queen-bee-header">
+            <h3>👑 Abelha Rei da Semana</h3>
+          </div>
+          <div className="queen-bee-profile">
+            <img
+              src={queenBee.photo}
+              alt={`Foto de ${queenBee.name}`}
+              className="profile-pic"
+            />
+            <h4>{queenBee.name}</h4>
+            <p className="class-info">Turma {queenBee.class}</p>
+          </div>
+          <div className="queen-bee-achievement">
+            <p>"{queenBee.achievement}"</p>
+          </div>
         </div>
-      </main>
-    </div>
+          </main>
+        </div>
   );
 }
 

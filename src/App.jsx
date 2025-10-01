@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
+import ZunzunsPage from "./pages/ZunzunsPage";
 import DashboardPage from "./pages/DashboardPage";
 import ColmeiasPage from "./pages/ColmeiasPage";
 import ColmeiaDetailPage from "./pages/ColmeiaDetailPage";
@@ -219,8 +220,32 @@ function App() {
           }
         />
         <Route
+          path="/zunzuns"
+          element={
+            user ? (
+              <ZunzunsPage
+                communities={communities}
+                currentUser={user}
+                onCreateCommunity={handleCreateCommunity}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
           path="*"
-          element={<Navigate to={user ? "/dashboard" : "/login"} />}
+          element={
+            user ? (
+              <DashboardPage
+                user={user}
+                onLogout={handleLogout}
+                backendUrl={backendUrl} // << ADICIONE ISTO
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
       </Routes>
 

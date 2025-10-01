@@ -126,7 +126,7 @@
     color: inherit;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 668px) {
     .colmeias-container {
         width: calc(100% - 20px); 
         padding: 5px 10px;
@@ -142,12 +142,13 @@
     }
 
     .colmeia-card {
-        width: 180px;
-        height: 210px;
-        padding: 10px;
+        width: 145px;
+        height: 175px;
+        padding: 0px;
     }
 
     .colmeia-card h4 { 
+        margin-top: 20px;
         font-size: 1rem; 
     }
 }
