@@ -7,7 +7,7 @@ function AttackModal({ attacker, defender, onResolveAttack, onClose }) {
 
   const handleAttackClick = () => {
     setIsResolving(true);
-    // simula um suspense de batalha por 2 segundos
+    // simula um suspense por 2 segundos
     setTimeout(() => {
       const attackResult = onResolveAttack(); // Chama a lógica principal do App.jsx
       setResult(attackResult);

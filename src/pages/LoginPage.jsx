@@ -12,7 +12,6 @@ function BeeModel() {
 function LoginPage() {
   return (
     <div className="main-layout-container">
-      {/* Lado esquerdo: Abelha 3D e frase */}
       <div className="left-panel">
         <div className="bee-3d-wrapper">
           <Canvas camera={{ position: [0, 2, 8], fov: 25 }}>
@@ -29,7 +28,6 @@ function LoginPage() {
           <p>Alunos da Escola Abel, façam parte da nossa comunidade.</p>
         </div>
       </div>
-      {/* Lado direito: Formulário de Login */}
       <div className="right-panel">
         <Login />
       </div>

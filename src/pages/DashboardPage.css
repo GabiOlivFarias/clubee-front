@@ -105,7 +105,7 @@
     display: flex; 
     gap: 20px; 
     width: 100%;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
     flex-wrap: wrap; 
 }
 
@@ -202,25 +202,26 @@
 
 .users-list-section {
     flex-grow: 1; 
-    min-width: 250px; 
-    background: rgba(0, 0, 0, 0.3); 
+    min-width: 250px;
+    background: rgba(0, 0, 0, 0.3);
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 
 @media (max-width: 900px) {
     .dashboard-main-content {
         grid-template-columns: 1fr;
     }
     .main-content-row {
-        flex-direction: column;
-        align-items: center; 
+        flex-direction: column; 
+        align-items: center;
     }
     
     .main-hub, 
     .users-list-section {
-        width: 95%; 
+        width: 95%;
         min-width: unset;
     }
     .dashboard-header {

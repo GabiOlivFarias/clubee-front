@@ -3,13 +3,12 @@ import queenPhoto from "../assets/images/roblox.jpg";
 import "./DashboardPage.css";
 import { Link } from "react-router-dom";
 import BuildingScene from "../components/BuildingScene";
-//import HoneycombIcon from "../assets/icons/honeycombIcon";
+import HoneycombIcon from "../assets/icons/HoneycombIcon";
 import ClassesIcon from "../assets/icons/ClassesIcon";
 import BeeIcon from "../assets/icons/BeeIcon";
 import QueenIcon from "../assets/icons/QueenIcon";
 
 function DashboardPage({ user, onLogout, backendUrl }) {
-  // Receba backendUrl
   const [users, setUsers] = useState([]);
   const [loadingUsers, setLoadingUsers] = useState(true);
 
@@ -20,11 +19,9 @@ function DashboardPage({ user, onLogout, backendUrl }) {
     achievement: "Derrotou mais colméias nos ultimos 15 dias",
   };
 
-  // Efeito para buscar a lista de usuários
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        // Chama a nova rota de usuários
         const response = await fetch(`${backendUrl}/api/users`, {
           credentials: "include",
         });
@@ -65,7 +62,7 @@ function DashboardPage({ user, onLogout, backendUrl }) {
             className="action-btn"
             style={{ textDecoration: "none" }}
           >
-            🍯
+            <HoneycombIcon  className="btn-icon"/>
             <span className="btn-text">Colmeias</span>
           </Link>
 
@@ -101,7 +98,7 @@ function DashboardPage({ user, onLogout, backendUrl }) {
                   style={{
                   padding: "5px",
                   borderBottom: "1px solid #333",
-                  color: "inherit", // Remove a lógica de cor, pois agora são todos "outros"
+                  color: "inherit", 
                   }}
                   >
                   👤 {u.displayName}

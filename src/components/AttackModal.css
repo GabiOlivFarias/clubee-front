@@ -9,7 +9,7 @@
     display: flex; 
     justify-content: center; 
     align-items: center;
-    padding: 10px; /* garante espaço em telas pequenas */
+    padding: 10px; 
     box-sizing: border-box;
 }
 
@@ -18,7 +18,7 @@
     color: #333; 
     padding: 30px;
     border-radius: 20px; 
-    width: 100%; /* usa toda largura disponível */
+    width: 100%; 
     max-width: 600px; 
     text-align: center;
     box-sizing: border-box;
@@ -28,16 +28,16 @@
     display: flex; 
     justify-content: space-around; 
     align-items: center; 
-    flex-wrap: wrap; /* permite quebrar linha em telas pequenas */
+    flex-wrap: wrap; 
     margin: 20px 0; 
-    gap: 15px; /* espaço entre combatentes */
+    gap: 15px; 
 }
 
 .combatant { 
     padding: 20px; 
     border-radius: 10px;
-    width: 45%; /* ocupa metade da linha em telas médias */
-    min-width: 150px; /* evita ficar muito estreito */
+    width: 45%; 
+    min-width: 150px;
     box-sizing: border-box;
 }
 
@@ -113,10 +113,9 @@
     font-weight: bold;
 }
 
-/* Media Queries para telas menores */
 @media (max-width: 500px) {
     .combatant {
-        width: 100%; /* ocupa toda largura da linha */
+        width: 100%; 
         padding: 15px;
     }
 
@@ -126,7 +125,7 @@
     }
 
     .launch-attack-btn {
-        width: 100%; /* botão cheio na linha */
+        width: 100%; 
         padding: 12px 0;
         font-size: 1rem;
     }

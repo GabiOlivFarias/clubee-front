@@ -9,8 +9,6 @@ import AttackModal from "./components/AttackModal";
 import "./App.css";
 
 function App() {
-  // NOVO: Linha mágica que escolhe a URL do backend automaticamente.
-  // Em modo de desenvolvimento, usa 'localhost'. No deploy, usa a URL da Vercel.
   const backendUrl = import.meta.env.DEV
     ? "http://localhost:3001"
     : import.meta.env.VITE_BACKEND_URL;
@@ -52,16 +50,13 @@ function App() {
     defender: null,
   });
 
-  // Salva no localStorage sempre que as comunidades são alteradas
   useEffect(() => {
     localStorage.setItem("clubee_communities", JSON.stringify(communities));
   }, [communities]);
 
-  // Verifica o status do login depois de carregar
   useEffect(() => {
     const checkLoginStatus = async () => {
       try {
-        // ALTERADO: Usando a variável backendUrl
         const response = await fetch(`${backendUrl}/api/user/me`, {
           credentials: "include",
         });
@@ -76,11 +71,10 @@ function App() {
       }
     };
     checkLoginStatus();
-  }, [backendUrl]); // Adicionado backendUrl como dependência
+  }, [backendUrl]);
 
   const handleLogout = () => {
     setUser(null);
-    // ALTERADO: Usando a variável backendUrl
     window.location.href = `${backendUrl}/auth/logout`;
   };
 
@@ -227,6 +221,7 @@ function App() {
                 communities={communities}
                 currentUser={user}
                 onCreateCommunity={handleCreateCommunity}
+                backendUrl={backendUrl}
               />
             ) : (
               <Navigate to="/login" />
@@ -240,7 +235,7 @@ function App() {
               <DashboardPage
                 user={user}
                 onLogout={handleLogout}
-                backendUrl={backendUrl} // << ADICIONE ISTO
+                backendUrl={backendUrl} 
               />
             ) : (
               <Navigate to="/login" />

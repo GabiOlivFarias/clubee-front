@@ -9,11 +9,8 @@ function Model() {
 
   useEffect(() => {
     if (modelRef.current) {
-      // calcula a caix que envolve o modelo
       const box = new THREE.Box3().setFromObject(modelRef.current);
-      // encontra o centro dessa caixa
       const center = box.getCenter(new THREE.Vector3());
-      // move o modelo para que seu centro fique na posição (0,0,0) da cena
       modelRef.current.position.sub(center);
       modelRef.current.position.y += 2.0;
     }
@@ -30,7 +27,7 @@ function Model() {
   return <primitive object={scene} ref={modelRef} scale={1.2} />;
 }
 
-// Componente principal que monta a cena 3D
+// Componente que monta a cena 3D
 function BuildingScene() {
   return (
     <div className="scene-3d-container">

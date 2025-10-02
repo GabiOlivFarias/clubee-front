@@ -1,24 +1,76 @@
-.zunzuns-page-container {
-    max-width: 650px; /* Largura para o feed */
-    margin: 0 auto; /* Centraliza na tela */
-    padding: 20px;
-    background-color: #1c1c1c; /* Fundo ligeiramente diferente para o feed */
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+.zunzum-feed-wrapper {
+    max-height: 70vh;   
+    overflow-y: auto;   
+    padding-right: 8px; 
 }
 
-.zunzuns-page-container h1 {
-    color: #ffcc00;
+
+.zunzum-feed-wrapper::-webkit-scrollbar {
+    width: 6px;
+}
+.zunzum-feed-wrapper::-webkit-scrollbar-thumb {
+    background: #FFD700;
+    border-radius: 4px;
+}
+
+.zunzum-page-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.zunzum-page-title {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #4a4a4a;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #333;
+    border-bottom: 3px solid #FFD700;
+    letter-spacing: 1px;
 }
 
-/* --- Estilo de Parágrafo (temporário) --- */
-.zunzuns-page-container p {
+.feed-separator {
+    display: flex;
+    align-items: center;
     text-align: center;
+    margin: 30px 0;
+}
+
+.feed-separator::before,
+.feed-separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px dashed #ccc;
+}
+
+.separator-text {
+    padding: 0 15px;
+    color: #666;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.zunzum-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.loading-message, .empty-message {
+    text-align: center;
+    color: #888;
+    font-style: italic;
     padding: 20px;
-    border: 1px dashed #555;
-    border-radius: 8px;
+}
+
+@media (max-width: 900px) {
+    .zunzum-page-title {
+        font-size: 1.5em;
+        margin-top: 0px;
+    }
+
+    .zunzum-page-container {
+        padding: 8px;
+    }
 }
