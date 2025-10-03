@@ -197,6 +197,38 @@ function App() {
             )
           }
         />
+                <Route
+          path="/classes"
+          element={
+            user ? (
+              <ColmeiaDetailPage
+                communities={communities}
+                currentUser={user}
+                onJoin={handleJoinCommunity}
+                onLeave={handleLeaveCommunity}
+                onOpenAttackModal={handleOpenAttackModal}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+                <Route
+          path="/queen"
+          element={
+            user ? (
+              <ColmeiaDetailPage
+                communities={communities}
+                currentUser={user}
+                onJoin={handleJoinCommunity}
+                onLeave={handleLeaveCommunity}
+                onOpenAttackModal={handleOpenAttackModal}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
         <Route
           path="/colmeias/:id"
           element={

@@ -246,4 +246,7 @@
     .action-buttons-header .btn-icon {
         font-size: 1.5rem;
     }
+    .btn-icon {
+        scale: 3;
+    }
 }

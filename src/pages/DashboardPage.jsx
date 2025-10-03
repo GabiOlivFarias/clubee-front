@@ -65,15 +65,22 @@ function DashboardPage({ user, onLogout, backendUrl }) {
             <HoneycombIcon  className="btn-icon"/>
             <span className="btn-text">Colmeias</span>
           </Link>
-
-          <button className="action-btn">
-            <ClassesIcon className="btn-icon" />
+          <Link
+            to="/classes"
+            className="action-btn"
+            style={{ textDecoration: "none" }}
+          >
+            <ClassesIcon  className="btn-icon"/>
             <span className="btn-text">Aulas</span>
-          </button>
-          <button className="action-btn">
-            <QueenIcon className="btn-icon" />
+          </Link>
+          <Link
+            to="/queen"
+            className="action-btn"
+            style={{ textDecoration: "none" }}
+          >
+            <QueenIcon  className="btn-icon"/>
             <span className="btn-text">Abelha Rainha</span>
-          </button>
+          </Link>
         </div>
         <button onClick={onLogout} className="logout-button">
           Sair
