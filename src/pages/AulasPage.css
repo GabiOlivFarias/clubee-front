@@ -1,0 +1,113 @@
+.aulas-container {
+  color: #fff;
+  background-color: #1a1a2e;
+  height: 100vh; 
+  padding: 20px;
+  display: flex; 
+  flex-direction: column; 
+  overflow: hidden; 
+  box-sizing: border-box; 
+}
+
+.aulas-header {
+  text-align: center;
+  margin-bottom: 30px;
+  flex-shrink: 0; 
+}
+
+.aulas-header h1 {
+  font-size: 2.5rem;
+  color: #f7b733;
+}
+
+.aulas-main {
+  display: flex;
+  gap: 20px;
+  flex: 1; 
+  overflow: hidden; 
+}
+
+.aulas-sidebar {
+  flex: 0 0 250px;
+  background-color: #162447;
+  padding: 20px;
+  border-radius: 10px;
+  height: fit-content;
+}
+
+.aulas-sidebar h3, .aulas-sidebar h4 {
+  color: #f7b733;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e94560;
+  padding-bottom: 5px;
+}
+
+.aulas-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.aulas-sidebar li {
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.aulas-sidebar li:hover {
+  background-color: #e94560;
+}
+
+.aulas-sidebar li.active {
+  background-color: #f7b733;
+  color: #1a1a2e;
+  font-weight: bold;
+}
+
+.aulas-conteudo {
+  flex: 1;
+  background-color: #162447;
+  padding: 20px;
+  border-radius: 10px;
+  overflow-y: auto; 
+}
+
+.aulas-conteudo::-webkit-scrollbar {
+  width: 8px;
+}
+
+.aulas-conteudo::-webkit-scrollbar-track {
+  background: #162447;
+  border-radius: 10px;
+}
+
+.aulas-conteudo::-webkit-scrollbar-thumb {
+  background-color: #f7b733;
+  border-radius: 10px;
+  border: 2px solid #162447;
+}
+
+.eventos-gerais h2 {
+    color: #f7b733;
+    margin-bottom: 20px;
+}
+
+.card-evento {
+    background-color: #1f4068;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border-left: 5px solid #f7b733;
+}
+
+.card-evento h3 {
+    margin: 0 0 5px 0;
+}
+
+.card-evento .evento-data {
+    font-style: italic;
+    color: #ccc;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}

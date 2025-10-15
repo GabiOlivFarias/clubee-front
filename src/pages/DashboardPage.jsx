@@ -66,7 +66,7 @@ function DashboardPage({ user, onLogout, backendUrl }) {
             <span className="btn-text">Colmeias</span>
           </Link>
           <Link
-            to="/classes"
+            to="/aulas"
             className="action-btn"
             style={{ textDecoration: "none" }}
           >

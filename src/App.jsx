@@ -6,6 +6,7 @@ import DashboardPage from "./pages/DashboardPage";
 import ColmeiasPage from "./pages/ColmeiasPage";
 import ColmeiaDetailPage from "./pages/ColmeiaDetailPage";
 import AttackModal from "./components/AttackModal";
+import AulasPage from "./pages/AulasPage";
 import "./App.css";
 
 function App() {
@@ -198,16 +199,10 @@ function App() {
           }
         />
                 <Route
-          path="/classes"
+          path="/aulas"
           element={
             user ? (
-              <ColmeiaDetailPage
-                communities={communities}
-                currentUser={user}
-                onJoin={handleJoinCommunity}
-                onLeave={handleLeaveCommunity}
-                onOpenAttackModal={handleOpenAttackModal}
-              />
+              <AulasPage user={user} />
             ) : (
               <Navigate to="/login" />
             )
