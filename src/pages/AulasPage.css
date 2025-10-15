@@ -11,13 +11,14 @@
 
 .aulas-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   flex-shrink: 0; 
 }
 
 .aulas-header h1 {
   font-size: 2.5rem;
   color: #f7b733;
+  margin-bottom: 5px;
 }
 
 .aulas-main {
@@ -27,17 +28,54 @@
   overflow: hidden; 
 }
 
+.header-info-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.info-card {
+    background-color: #162447;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid #f7b733;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 220px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(247, 183, 51, 0.2);
+}
+
+.info-card-title {
+    font-size: 0.9em;
+    color: #ccc;
+    margin-bottom: 8px;
+    font-weight: 300;
+}
+
+.info-card-content {
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
 .aulas-sidebar {
   flex: 0 0 250px;
   background-color: #162447;
   padding: 20px;
   border-radius: 10px;
-  height: fit-content;
+  overflow-y: auto;
 }
 
 .aulas-sidebar h3, .aulas-sidebar h4 {
   color: #f7b733;
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
   border-bottom: 1px solid #e94560;
   padding-bottom: 5px;
 }
@@ -45,6 +83,7 @@
 .aulas-sidebar ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .aulas-sidebar li {
@@ -73,21 +112,6 @@
   overflow-y: auto; 
 }
 
-.aulas-conteudo::-webkit-scrollbar {
-  width: 8px;
-}
-
-.aulas-conteudo::-webkit-scrollbar-track {
-  background: #162447;
-  border-radius: 10px;
-}
-
-.aulas-conteudo::-webkit-scrollbar-thumb {
-  background-color: #f7b733;
-  border-radius: 10px;
-  border: 2px solid #162447;
-}
-
 .eventos-gerais h2 {
     color: #f7b733;
     margin-bottom: 20px;
@@ -110,4 +134,76 @@
     color: #ccc;
     font-size: 0.9em;
     margin-bottom: 10px;
+}
+
+.aulas-conteudo::-webkit-scrollbar,
+.aulas-sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.aulas-conteudo::-webkit-scrollbar-track,
+.aulas-sidebar::-webkit-scrollbar-track {
+  background: #162447;
+  border-radius: 10px;
+}
+
+.aulas-conteudo::-webkit-scrollbar-thumb,
+.aulas-sidebar::-webkit-scrollbar-thumb {
+  background-color: #f7b733;
+  border-radius: 10px;
+}
+
+@media (max-width: 992px) {
+    .header-info-cards {
+        gap: 10px;
+    }
+    .info-card {
+        min-width: 180px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+  .aulas-container {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto; 
+  }
+
+  .aulas-main {
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .aulas-sidebar {
+    flex-basis: auto;
+    margin-bottom: 20px;
+    overflow-y: visible;
+  }
+
+  .aulas-conteudo {
+    overflow-y: visible;
+  }
+
+  .header-info-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-card {
+    width: 90%;
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+    .aulas-container {
+        padding: 10px;
+    }
+    .aulas-header h1 {
+        font-size: 2rem;
+    }
+    .aulas-main {
+        gap: 15px;
+    }
 }
