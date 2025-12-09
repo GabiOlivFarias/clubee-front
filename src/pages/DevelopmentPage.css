@@ -1,0 +1,210 @@
+:root {
+    --amarelo-mel: #FFC93C;
+    --laranja-doce: #FF9A3C;
+    --azul-suave: #3A86FF;
+    --preto-suave: #222222;
+    --cinza-bg: #f4f4f4;
+    --branco: #ffffff;
+}
+
+.development-page-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif; 
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    padding-bottom: 100px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--amarelo-mel) #f1f1f1;
+}
+
+.dev-header {
+    text-align: center;
+    margin-bottom: 40px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.dev-title {
+    color: var(--preto-suave);
+    margin: 0;
+    font-size: 2rem;
+}
+
+.dev-subtitle {
+    color: #666;
+    margin-top: 5px;
+}
+
+.game-board {
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.path-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 6px;
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--amarelo-mel) 0,
+        var(--amarelo-mel) 15px,
+        transparent 15px,
+        transparent 25px
+    );
+    transform: translateX(-50%);
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.level-row {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr; 
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.level-row.right {
+    direction: rtl; 
+}
+
+.level-row.right .level-card {
+    direction: ltr;
+    text-align: left;
+}
+
+.level-node {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border: 4px solid var(--azul-suave);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.8); 
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+
+.level-row.completed .level-node {
+    background-color: var(--amarelo-mel);
+    border-color: var(--laranja-doce);
+    color: white;
+}
+
+.level-row.active .level-node {
+    background-color: var(--azul-suave);
+    border-color: var(--amarelo-mel);
+    transform: scale(1.2);
+    box-shadow: 0 0 15px var(--azul-suave);
+}
+
+.level-row.locked .level-node {
+    background-color: #e0e0e0;
+    border-color: #999;
+    filter: grayscale(1);
+}
+
+.user-avatar-marker {
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    border: 2px solid var(--preto-suave);
+    overflow: hidden;
+    animation: bounce 1.5s infinite;
+}
+.user-avatar-marker img {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes bounce {
+    0%, 100% { top: -45px; }
+    50% { top: -55px; }
+}
+
+.level-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin: 0 20px;
+    border-left: 5px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.level-card:hover {
+    transform: translateY(-5px);
+}
+
+.level-row:has(.level-node span:first-child:contains('📄')) .level-card { border-left-color: #e34c26; }
+.level-row .level-card { border-left-color: var(--azul-suave); }
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.level-number {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #888;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.level-card h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--preto-suave);
+}
+
+.level-card p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 5px 0 15px 0;
+}
+
+.start-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--amarelo-mel);
+    color: var(--preto-suave);
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #e5b32a;
+    transition: all 0.1s;
+}
+
+.start-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 #e5b32a;
+}
+
+.level-row.locked .level-card {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: #f9f9f9;
+}
