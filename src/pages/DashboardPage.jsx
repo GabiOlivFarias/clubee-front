@@ -7,6 +7,7 @@ import HoneycombIcon from "../assets/icons/HoneycombIcon";
 import ClassesIcon from "../assets/icons/ClassesIcon";
 import BeeIcon from "../assets/icons/BeeIcon";
 import QueenIcon from "../assets/icons/QueenIcon";
+import CatHacker from "../assets/icons/CatHackerIcon";
 
 function DashboardPage({ user, onLogout, backendUrl }) {
   const [users, setUsers] = useState([]);
@@ -15,7 +16,7 @@ function DashboardPage({ user, onLogout, backendUrl }) {
   const queenBee = {
     photo: queenPhoto,
     name: "Mauro Oliveira",
-    class: "7ºB",
+    class: "8ºB",
     achievement: "Derrotou mais colméias nos ultimos 15 dias",
   };
 
@@ -80,6 +81,14 @@ function DashboardPage({ user, onLogout, backendUrl }) {
           >
             <QueenIcon  className="btn-icon"/>
             <span className="btn-text">Abelha Rainha</span>
+          </Link>
+          <Link
+            to="/development"
+            className="action-btn"
+            style={{ textDecoration: "none" }}
+          >
+            <CatHacker  className="btn-icon2"/>
+            <span className="btn-text2">Programação</span>
           </Link>
         </div>
         <button onClick={onLogout} className="logout-button">

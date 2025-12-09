@@ -73,14 +73,25 @@
     border: 2px solid rgba(248, 243, 243, 0.7);
 }
 .btn-icon {
-    width: 24px;   
-    height: 24px;  
-    color: #ff9e0c;
+    width: 28px;   
+    height: 28px;  
+    padding: 5px;  
+}
+
+.btn-icon2 {
+    width: 66px;   
+    height: 46px;  
     padding: 5px;  
 }
 
 .btn-text {
-    padding: 5px;  
+    padding: 8px;  
+    font-size: 13pt;
+}
+
+.btn-text2 {
+    padding: 8px;  
+    font-size: 13pt;
 }
 
 .logout-button {

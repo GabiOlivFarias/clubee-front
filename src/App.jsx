@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import ZunzunsPage from "./pages/ZunzunsPage";
+import DevelopmentPage from "./pages/DevelopmentPage";
 import DashboardPage from "./pages/DashboardPage";
 import ColmeiasPage from "./pages/ColmeiasPage";
 import ColmeiaDetailPage from "./pages/ColmeiaDetailPage";
@@ -178,7 +179,7 @@ function App() {
           path="/dashboard"
           element={
             user ? (
-              <DashboardPage user={user} onLogout={handleLogout} />
+              <DashboardPage user={user} onLogout={handleLogout} backendUrl={backendUrl}/>
             ) : (
               <Navigate to="/login" />
             )
@@ -198,7 +199,7 @@ function App() {
             )
           }
         />
-                <Route
+        <Route
           path="/aulas"
           element={
             user ? (
@@ -208,7 +209,7 @@ function App() {
             )
           }
         />
-                <Route
+        <Route
           path="/queen"
           element={
             user ? (
@@ -249,6 +250,20 @@ function App() {
                 currentUser={user}
                 onCreateCommunity={handleCreateCommunity}
                 backendUrl={backendUrl}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/development"
+          element={
+            user ? (
+              <DevelopmentPage
+                currentUser={user}
+                onLogout={handleLogout}
+                backendUrl={backendUrl} 
               />
             ) : (
               <Navigate to="/login" />
