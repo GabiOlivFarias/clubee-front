@@ -139,6 +139,10 @@ function App() {
     setIsAttackModalOpen(true);
   };
 
+  // teste
+  console.log("Vite DEV? ->", import.meta.env.DEV);
+  console.log("VITE_BACKEND_URL ->", import.meta.env.VITE_BACKEND_URL);                       
+
   const handleResolveAttack = () => {
     const { attacker, defender } = attackData;
     const successChance = 0.5 + (attacker.members - defender.members) * 0.05;
