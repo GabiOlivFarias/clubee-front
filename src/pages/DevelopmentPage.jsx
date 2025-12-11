@@ -79,12 +79,19 @@ function DevelopmentPage({ currentUser }) {
                                         <button 
                                             className="start-btn"
                                             onClick={(e) => {
-                                                e.stopPropagation(); // Evita clicar no card ao clicar no botao
+                                                e.stopPropagation();
+
+                                                if (level.type === "html") {
+                                                    window.location.href = "/trilha/html";
+                                                    return;
+                                                }
+
                                                 handlePlayLevel(level);
                                             }}
                                         >
-                                            JOGAR 
+                                            JOGAR
                                         </button>
+
                                     )}
                                 </div>
 

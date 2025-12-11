@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import ZunzunsPage from "./pages/ZunzunsPage";
 import DevelopmentPage from "./pages/DevelopmentPage";
+import HtmlTrailPage from "./pages/HtmlTrailPage";
 import DashboardPage from "./pages/DashboardPage";
 import ColmeiasPage from "./pages/ColmeiasPage";
 import ColmeiaDetailPage from "./pages/ColmeiaDetailPage";
@@ -269,6 +270,16 @@ function App() {
                 onLogout={handleLogout}
                 backendUrl={backendUrl} 
               />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/trilha/html"
+          element={
+            user ? (
+              <HtmlTrailPage user={user} />
             ) : (
               <Navigate to="/login" />
             )
