@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./HtmlTrailPage.css";
 import ArrowIcon from "../assets/icons/ArrowIcon";
 import wizardPhoto from "../assets/images/bruxo.png";
@@ -65,22 +65,51 @@ for (let i = 0; i < activities.length; i += tilesPerRow) {
   boardRows.push(activities.slice(i, i + tilesPerRow));
 }
 
-function HtmlTrailPage() {   
+function HtmlTrailPage() {
   const navigate = useNavigate();
   const [checks, setChecks] = useState({});
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
 
-  const toggleCheck = (id, type) => {
-    if (type !== "activity") return;
-    setChecks((prev) => ({ ...prev, [id]: !prev[id] }));
+  useEffect(() => {
+    fetch(`${API_URL}/api/progress?trail=html`, {
+      credentials: "include"
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          const saved = {};
+          data.records.forEach(r => {
+            saved[r.activityId] = r.completed;
+          });
+          setChecks(saved);
+        }
+      })
+      .catch(err => console.error("Erro ao carregar progresso:", err));
+  }, []);
+
+  const saveProgress = (id, completed) => {
+    fetch(`${API_URL}/api/progress`, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        trail: "html",
+        activityId: id,
+        completed
+      })
+    }).catch(err => console.error("Erro ao salvar progresso:", err));
   };
 
   const handleTileClick = (id, type) => {
-    if (type === "final") {
-      navigate("/trilha/html/teste");
-      return;
-    }
-    if (type === "activity") {
-      toggleCheck(id, type);
+    if (type === "start" || type === "obstacle") return;
+
+    const newState = !checks[id];
+    const updated = { ...checks, [id]: newState };
+    setChecks(updated);
+    saveProgress(id, newState);
+
+    if (id === "end" && newState === true) {
+      setTimeout(() => navigate("/trilha/html/teste"), 800);
     }
   };
 
@@ -121,7 +150,7 @@ function HtmlTrailPage() {
                           <span className="rpg-label">{activity.label}</span>
                         </div>
 
-                        {activity.type === "activity" && (
+                        {activity.type !== "start" && activity.type !== "obstacle" && (
                           <div className={`wax-seal ${isCompleted ? "stamped" : ""}`}>
                             {isCompleted && <Check size={16} strokeWidth={4} />}
                           </div>
