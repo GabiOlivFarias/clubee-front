@@ -9,13 +9,14 @@ const JsIcon = () => <span style={{ fontSize: '1.5rem' }}>⚡</span>;
 const LockIcon = () => <span style={{ fontSize: '1.2rem' }}>🔒</span>;
 
 function DevelopmentPage({ currentUser }) {
-    const navigate = useNavigate();   // ✔️ AGORA NO LUGAR CERTO
+    const navigate = useNavigate();   
 
     const [currentLevelId, setCurrentLevelId] = useState(1);
     const [htmlFinalCompleted, setHtmlFinalCompleted] = useState(false);
+    const API_URL = import.meta.env.VITE_BACKEND_URL;
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/progress?trail=html", {
+        fetch(`${API_URL}/api/progress?trail=html`, {
             credentials: "include"
         })
         .then(res => res.json())
