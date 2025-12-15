@@ -23,9 +23,9 @@ html, body {
   min-height: 100vh !important;
   height: auto !important;
   overflow-y: visible !important;
-   background-image: linear-gradient(to right, rgba(9, 24, 49, 0.315), rgba(65, 65, 65, 0.301)), url('../assets/images/rliste.jpeg');
-   background-repeat: no-repeat;
-   background-size: cover;
+  background-image: linear-gradient(to right, rgba(9, 24, 49, 0.315), rgba(65, 65, 65, 0.301)), url('../assets/images/rliste.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,14 +120,14 @@ html, body {
 
 .stone-path {
   position: absolute;
-  height: 60px;
+  height: 70px;
   background-color: #5d4037;
   background-image: 
     repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(0,0,0,0.2) 11px, transparent 12px),
     linear-gradient(to bottom, #3e2723, #5d4037 50%, #3e2723);
   top: 50%;
-  left: 20px;
-  right: 20px;
+  left: 50px;
+  right: 40px;
   transform: translateY(-50%);
   border-radius: 4px;
   z-index: 0;
@@ -137,14 +137,14 @@ html, body {
 }
 
 .path-connector {
-  height: 90px;
+  height: 80px;
   position: relative;
 }
 
 .stone-connector {
   position: absolute;
-  width: 155px;
-  height: 210px;
+  width: 170px;
+  height: 200px;
   border: 60px solid #5d4037;
   top: -115px;
   z-index: 0;

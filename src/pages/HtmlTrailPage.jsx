@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
 import "./HtmlTrailPage.css";
 import ArrowIcon from "../assets/icons/ArrowIcon";
+import React, { useState, useEffect } from "react";
+import ScrollModal from "../components/ScrollModal";
 import wizardPhoto from "../assets/images/bruxo.png";
 import { Link, useNavigate } from "react-router-dom";
+import { htmlActivities } from "../data/htmlActivities";
 
 import {
   Scroll,
@@ -38,26 +40,7 @@ function Flag(props) {
   );
 }
 
-const activities = [
-  { id: "start", label: "A Jornada", type: "start", icon: MapIcon },
-  { id: "head", label: "O Capacete: a Tag <head>", type: "activity", icon: Shield },
-  { id: "title", label: "O Estandarte <title>", type: "activity", icon: Flag },
-  { id: "obstacle-1", label: "Emboscada: Pratique", type: "obstacle", icon: Sword },
-  { id: "body", label: "A Armadura: a Tag <body>", type: "activity", icon: Shield },
-  { id: "h", label: "Hierarquia Real: a Tag <H>", type: "activity", icon: Crown },
-  { id: "obstacle-2", label: "Masmorra: Pratique", type: "obstacle", icon: Skull },
-  { id: "p", label: "Pergaminho: a Tag <p>", type: "activity", icon: Scroll },
-  { id: "br", label: "Fenda: a Tag <br>", type: "activity", icon: Flame },
-  { id: "div", label: "Baú: a Tag <div>", type: "activity", icon: Tent },
-  { id: "l", label: "Inventário: a Tag <ul>", type: "activity", icon: Scroll },
-  { id: "obstacle-3", label: "Acampamento: Pratique", type: "obstacle", icon: Tent },
-  { id: "img", label: "Retrato: a Tag <img>", type: "activity", icon: Scroll },
-  { id: "table", label: "O Banquete: a Tag <table>", type: "activity", icon: Scroll },
-  { id: "a", label: "Portal: a Tag <a>", type: "activity", icon: Compass },
-  { id: "input", label: "Conjuração: a Tag <input>", type: "activity", icon: Scroll },
-  { id: "button", label: "Gatilho: a Tag <button>", type: "activity", icon: Gem },
-  { id: "end", label: "O Tesouro Final: teste", type: "final", icon: Crown },
-];
+const activities = htmlActivities;
 
 const tilesPerRow = 5;
 const boardRows = [];
@@ -67,13 +50,14 @@ for (let i = 0; i < activities.length; i += tilesPerRow) {
 
 function HtmlTrailPage() {
   const navigate = useNavigate();
-  const [checks, setChecks] = useState({});
   const API_URL = import.meta.env.VITE_BACKEND_URL;
 
+  const [checks, setChecks] = useState({});
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedActivity, setSelectedActivity] = useState(null);
+
   useEffect(() => {
-    fetch(`${API_URL}/api/progress?trail=html`, {
-      credentials: "include"
-    })
+    fetch(`${API_URL}/api/progress?trail=html`, { credentials: "include" })
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -92,35 +76,39 @@ function HtmlTrailPage() {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        trail: "html",
-        activityId: id,
-        completed
-      })
+      body: JSON.stringify({ trail: "html", activityId: id, completed })
     }).catch(err => console.error("Erro ao salvar progresso:", err));
   };
 
-  const handleTileClick = (id, type) => {
-    if (type === "start" || type === "obstacle") return;
+  const handleTileClick = (activity) => {
+    if (activity.type === "start" || activity.type === "obstacle") return;
+    setSelectedActivity(activity);
+    setModalOpen(true);
+  };
 
-    const newState = !checks[id];
-    const updated = { ...checks, [id]: newState };
-    setChecks(updated);
-    saveProgress(id, newState);
+  const handleCloseModal = () => {
+    if (selectedActivity && !checks[selectedActivity.id]) {
+      const updated = { ...checks, [selectedActivity.id]: true };
+      setChecks(updated);
+      saveProgress(selectedActivity.id, true);
 
-    if (id === "end" && newState === true) {
-      setTimeout(() => navigate("/trilha/html/teste"), 800);
+      if (selectedActivity.id === "end") {
+        setTimeout(() => navigate("/trilha/html/teste"), 800);
+      }
     }
+
+    setModalOpen(false);
+    setSelectedActivity(null);
   };
 
   return (
     <div className="rpg-container">
-      <div className="map-texture"></div>
+      <div className="map-texture" />
 
       <div className="rpg-decoration">
         <hr />
         <img src={wizardPhoto} alt="wizard" className="wizard-rose" />
-        <div className="dragon-silhouette"></div>
+        <div className="dragon-silhouette" />
       </div>
 
       <h2 className="rpg-title">Crônicas do HTML</h2>
@@ -133,9 +121,9 @@ function HtmlTrailPage() {
           return (
             <React.Fragment key={rowIndex}>
               <div className={`board-row ${isReverse ? "reverse" : ""}`}>
-                <div className="stone-path"></div>
+                <div className="stone-path" />
 
-                {row.map((activity) => {
+                {row.map(activity => {
                   const Icon = activity.icon;
                   const isCompleted = checks[activity.id];
 
@@ -143,7 +131,7 @@ function HtmlTrailPage() {
                     <div key={activity.id} className="tile-wrapper">
                       <div
                         className={`rpg-tile ${activity.type} ${isCompleted ? "completed" : ""}`}
-                        onClick={() => handleTileClick(activity.id, activity.type)}
+                        onClick={() => handleTileClick(activity)}
                       >
                         <div className="tile-inner">
                           {Icon && <Icon className="rpg-icon" />}
@@ -155,11 +143,6 @@ function HtmlTrailPage() {
                             {isCompleted && <Check size={16} strokeWidth={4} />}
                           </div>
                         )}
-
-                        <div className="corner c-tl"></div>
-                        <div className="corner c-tr"></div>
-                        <div className="corner c-bl"></div>
-                        <div className="corner c-br"></div>
                       </div>
                     </div>
                   );
@@ -168,7 +151,7 @@ function HtmlTrailPage() {
 
               {!isLastRow && (
                 <div className={`path-connector ${isReverse ? "left-turn" : "right-turn"}`}>
-                  <div className="stone-connector"></div>
+                  <div className="stone-connector" />
                 </div>
               )}
             </React.Fragment>
@@ -180,6 +163,12 @@ function HtmlTrailPage() {
         <ArrowIcon className="btn-icon" />
         <span className="nav-text">Retornar à trilha</span>
       </Link>
+
+      <ScrollModal
+        open={modalOpen}
+        activity={selectedActivity}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 }
