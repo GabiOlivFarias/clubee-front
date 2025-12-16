@@ -163,7 +163,6 @@ function HtmlTrailPage() {
         <ArrowIcon className="btn-icon" />
         <span className="nav-text">Retornar à trilha</span>
       </Link>
-
       <ScrollModal
         open={modalOpen}
         activity={selectedActivity}
